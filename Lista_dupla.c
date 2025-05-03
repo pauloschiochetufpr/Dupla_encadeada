@@ -12,13 +12,12 @@ void inicializarBiblioteca(Biblioteca* b) {
 int cadastrarLivro(Biblioteca* b, char* titulo, char* autor, int ano, char* isbn) {
     NoLivro* atual = b->primeiro;
     while (atual != NULL) {
-        if (strcmp(atual->livro.isbn, isbn) == 0) return 0; // ISBN já cadastrado
+        if (strcmp(atual->livro.isbn, isbn) == 0) return 0; 
         atual = atual->proximo;
     }
 
     NoLivro* novo = (NoLivro*)malloc(sizeof(NoLivro));
     if (novo == NULL) return 0;
-
     strcpy(novo->livro.titulo, titulo);
     strcpy(novo->livro.autor, autor);
     novo->livro.ano = ano;
@@ -28,13 +27,10 @@ int cadastrarLivro(Biblioteca* b, char* titulo, char* autor, int ano, char* isbn
     novo->livro.dataEmprestimo[0] = '\0';
     novo->proximo = NULL;
     novo->anterior = b->ultimo;
-
     if (b->ultimo) b->ultimo->proximo = novo;
     else b->primeiro = novo;
-
     b->ultimo = novo;
     b->totalLivros++;
-
     return 1;
 }
 
@@ -71,7 +67,7 @@ int devolverLivro(Biblioteca* b, char* isbn) {
     return 1;
 }
 
-NoLivro* consultarLivroPorISBN(Biblioteca* b, char* isbn) {
+NoLivro* consultarPorISBN(Biblioteca* b, char* isbn) {
     NoLivro* atual = b->primeiro;
     while (atual != NULL) {
         if (strcmp(atual->livro.isbn, isbn) == 0) return atual;
@@ -83,7 +79,7 @@ NoLivro* consultarLivroPorISBN(Biblioteca* b, char* isbn) {
 void exibirFrente(Biblioteca* b) {
     NoLivro* atual = b->primeiro;
     while (atual != NULL) {
-        printf("ISBN: %s | Título: %s\n", atual->livro.isbn, atual->livro.titulo);
+    printf("ISBN: %s | Título: %s\n", atual->livro.isbn, atual->livro.titulo);
         atual = atual->proximo;
     }
 }
@@ -91,24 +87,9 @@ void exibirFrente(Biblioteca* b) {
 void exibirTras(Biblioteca* b) {
     NoLivro* atual = b->ultimo;
     while (atual != NULL) {
-        printf("ISBN: %s | Título: %s\n", atual->livro.isbn, atual->livro.titulo);
+    printf("ISBN: %s | Título: %s\n", atual->livro.isbn, atual->livro.titulo);
         atual = atual->anterior;
     }
-}
-
-int removerLivroPorISBN(Biblioteca* b, char* isbn) {
-    NoLivro* atual = consultarLivroPorISBN(b, isbn);
-    if (!atual) return 0;
-
-    if (atual->anterior) atual->anterior->proximo = atual->proximo;
-    else b->primeiro = atual->proximo;
-
-    if (atual->proximo) atual->proximo->anterior = atual->anterior;
-    else b->ultimo = atual->anterior;
-
-    free(atual);
-    b->totalLivros--;
-    return 1;
 }
 
 int removerInicio(Biblioteca* b) {
@@ -133,6 +114,21 @@ int removerFim(Biblioteca* b) {
     else b->primeiro = NULL;
 
     free(temp);
+    b->totalLivros--;
+    return 1;
+}
+
+int removerLivroPorISBN(Biblioteca* b, char* isbn) {
+    NoLivro* atual = consultarLivroPorISBN(b, isbn);
+    if (!atual) return 0;
+
+    if (atual->anterior) atual->anterior->proximo = atual->proximo;
+    else b->primeiro = atual->proximo;
+
+    if (atual->proximo) atual->proximo->anterior = atual->anterior;
+    else b->ultimo = atual->anterior;
+
+    free(atual);
     b->totalLivros--;
     return 1;
 }
