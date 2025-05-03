@@ -39,7 +39,7 @@ int cadastrarLivro(Biblioteca* b, char* titulo, char* autor, int ano, char* isbn
 void listarTodosLivros(Biblioteca* b);
 int emprestarLivro(Biblioteca* b, char* isbn, char* usuario, char* data);
 int devolverLivro(Biblioteca* b, char* isbn);
-NoLivro* consultarLivroPorISBN(Biblioteca* b, char* isbn);
+NoLivro* consultarPorISBN(Biblioteca* b, char* isbn);
 void exibirFrente(Biblioteca* b);
 void exibirTras(Biblioteca* b);
 int removerLivroPorISBN(Biblioteca* b, char* isbn);
