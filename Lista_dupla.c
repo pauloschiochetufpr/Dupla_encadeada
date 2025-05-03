@@ -9,7 +9,6 @@ void inicializarBiblioteca(Biblioteca* b) {
     b->totalLivros = 0;
 }
 
-// Inserção no final
 int cadastrarLivro(Biblioteca* b, char* titulo, char* autor, int ano, char* isbn) {
     NoLivro* atual = b->primeiro;
     while (atual != NULL) {
@@ -81,7 +80,6 @@ NoLivro* consultarLivroPorISBN(Biblioteca* b, char* isbn) {
     return NULL;
 }
 
-// Exibe do início ao fim
 void exibirFrente(Biblioteca* b) {
     NoLivro* atual = b->primeiro;
     while (atual != NULL) {
@@ -90,7 +88,6 @@ void exibirFrente(Biblioteca* b) {
     }
 }
 
-// Exibe do fim ao início
 void exibirTras(Biblioteca* b) {
     NoLivro* atual = b->ultimo;
     while (atual != NULL) {
@@ -99,7 +96,6 @@ void exibirTras(Biblioteca* b) {
     }
 }
 
-// Remove por ISBN
 int removerLivroPorISBN(Biblioteca* b, char* isbn) {
     NoLivro* atual = consultarLivroPorISBN(b, isbn);
     if (!atual) return 0;
@@ -115,7 +111,6 @@ int removerLivroPorISBN(Biblioteca* b, char* isbn) {
     return 1;
 }
 
-// Remove primeiro
 int removerInicio(Biblioteca* b) {
     if (!b->primeiro) return 0;
     NoLivro* temp = b->primeiro;
@@ -129,7 +124,6 @@ int removerInicio(Biblioteca* b) {
     return 1;
 }
 
-// Remove último
 int removerFim(Biblioteca* b) {
     if (!b->ultimo) return 0;
     NoLivro* temp = b->ultimo;
