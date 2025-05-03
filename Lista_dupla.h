@@ -21,7 +21,6 @@ typedef struct {
     char dataEmprestimo[MAX_DATA];
 } Livro;
 
-// Nó de lista duplamente encadeada
 typedef struct NoLivro {
     Livro livro;
     struct NoLivro* proximo;
@@ -30,7 +29,7 @@ typedef struct NoLivro {
 
 typedef struct {
     NoLivro* primeiro;
-    NoLivro* ultimo;     // novo campo para facilitar inserção/remover no fim
+    NoLivro* ultimo;    
     int totalLivros;
 } Biblioteca;
 
