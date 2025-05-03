@@ -10,19 +10,19 @@ int main() {
     cadastrarLivro(&b, "Domain-Driven Design", "Eric Evans", 2003, "2222");
     cadastrarLivro(&b, "A metarmorfose", "Franz Kafka", 1915, "3333");
     
-    printf("Emprestando livro...\n");
+    printf("Emprestando o livro\n");
     emprestarLivro(&b, "3333", "Paulo", "01/05/2025");
     
-    printf("Exibindo livros (frente):\n");
+    printf("Exibindo livros frente:\n");
     exibirFrente(&b);
     
-    printf("Exibindo livros (trás):\n");
+    printf("Exibindo livros trás:\n");
     exibirTras(&b);
     
-    printf("Removendo livro...\n");
+    printf("Removendo o livro\n");
     removerLivroPorISBN(&b, "2222");
     
-    printf("Liberando memória...\n");
+    printf("Liberando a memória.\n");
     destruirBiblioteca(&b);
     
     return 0;
